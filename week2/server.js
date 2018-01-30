@@ -8,8 +8,9 @@ var count = 0;
 var thesubmissions = [];
 
 app.get('/formpost', function(req, res) {
-  res.send("You submitted " + req.query.textfield);
+  //res.send("You submitted " + req.query.textfield);
   thesubmissions.push(req.query.textfield);
+  res.redirect('/display');
 });
 
 app.get('/display', function(req, res) {
