@@ -5,8 +5,20 @@ app.use(express.static('public'));
 
 var count = 0;
 
+var thesubmissions = [];
+
 app.get('/formpost', function(req, res) {
   res.send("You submitted " + req.query.textfield);
+  thesubmissions.push(req.query.textfield);
+});
+
+app.get('/display', function(req, res) {
+  var htmlout = "<html><body>";
+  for (var i = 0; i < thesubmissions.length; i++) {
+    htmlout = htmlout + thesubmissions[i] + "<br>";
+  }
+  var htmlout = htmlout + "</body></html>";
+  res.send(htmlout);
 });
 
 app.get('/count', function(req, res) {
