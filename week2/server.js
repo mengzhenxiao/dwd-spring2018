@@ -5,6 +5,10 @@ app.use(express.static('public'));
 
 var count = 0;
 
+app.get('/formpost', function(req, res) {
+  res.send("You submitted " + req.query.textfield);
+});
+
 app.get('/count', function(req, res) {
   count++;
   res.send("<html><body><h1>"+count+"</h1></body></html>");
