@@ -3,6 +3,13 @@ var app = express();
 
 app.use(express.static('public'));
 
+var count = 0;
+
+app.get('/count', function(req, res) {
+  count++;
+  res.send("<html><body><h1>"+count+"</h1></body></html>");
+});
+
 app.get('/', function (req, res) {
   res.send('Hello World!')
 });
