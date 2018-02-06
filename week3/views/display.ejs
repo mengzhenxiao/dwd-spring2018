@@ -15,7 +15,8 @@
   <body style="background-color: blue;">
 
     <% for (var i = 0; i < thedata.length; i++) { %>
-    <%= thedata[i].submission %>
+      <a href="/one?_id=<%= thedata[i]._id %>"><%= thedata[i]._id %> :
+    <%= thedata[i].submission %> </a><br />
     <!--JSON.stringify(thedata[i])-->
     <% } %>
 

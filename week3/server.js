@@ -1,12 +1,12 @@
 
 var config = require('./config.js');
-console.log(config);
+//console.log(config);
 
 var mongojs = require('mongojs');
 var express = require('express');
 var app = express();
 
-var db = mongojs("dwd-spring2018:password@ds125588.mlab.com:25588/dwd-spring2018", ["thesubmissions"]);
+var db = mongojs(config.mlabstring, ["thesubmissions"]);
 // db.thesubmissions.save({"test":"a test"}, function(err, saved) {
 //   if( err || !saved ) console.log("Not saved");
 //     else console.log("Saved");
@@ -35,6 +35,14 @@ app.get('/formpost', function(req, res) {
   });
 
   res.redirect('/display');
+});
+
+app.get('/one', function(req, res) {
+  //req.query._id
+  db.thesubmissions.findOne({_id: mongojs.ObjectId(req.query._id)}, function(err, saved) {
+    res.send("You pulled out: " + JSON.stringify(saved));
+  });
+
 });
 
 app.get('/display', function(req, res) {
